@@ -5,9 +5,6 @@ addons:
     packages:
     - cmake
 
-before_install:
-  - sudo apt-get -y install libgtest-dev
-
 before_script:
   - mkdir build
   - cd build

@@ -1,5 +1,7 @@
-cmake_minimum_required(VERSION 3.12)
-project(ParkHW1)
+cmake_minimum_required(VERSION 3.16)
+
+set(PROJECT_NAME ParkHW1)
+project(${PROJECT_NAME})
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDART_REQURED ON)
@@ -12,9 +14,9 @@ add_library(roman_to_arabic STATIC ${LIB_SOURCE_FILES})
 add_executable(main main.c)
 target_link_libraries(main roman_to_arabic)
 
+add_subdirectory(./gtest)
 enable_testing()
-find_package(GTest REQUIRED)
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-include_directories(${GTEST_INCLUDE_DIRS})
 add_executable(rta_test rta_test.cpp)
 target_link_libraries(rta_test ${GTEST_LIBRARIES} pthread roman_to_arabic)
