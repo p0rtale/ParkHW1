@@ -1,0 +1,15 @@
+addons:
+  apt:
+    packages:
+    - cmake
+
+before_script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+
+jobs:
+  include:
+    - stage: test
+      script: ./rta_test
