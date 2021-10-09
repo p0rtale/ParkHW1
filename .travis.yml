@@ -4,6 +4,7 @@ addons:
   apt:
     packages:
     - cmake
+    - libgtest-dev
 
 before_script:
   - mkdir build
