@@ -19,4 +19,4 @@ enable_testing()
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 add_executable(rta_test rta_test.cpp)
-target_link_libraries(rta_test ${GTEST_LIBRARIES} pthread roman_to_arabic)
+target_link_libraries(rta_test gtest roman_to_arabic)
