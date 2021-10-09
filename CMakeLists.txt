@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.12)
 
 set(PROJECT_NAME ParkHW1)
 project(${PROJECT_NAME})
