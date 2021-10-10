@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CODE_COVERAGE_FLAGS "-fprofile-arcs -ftest-coverage -fPIC")
-set(SANITIZER_FLAGS "-fsanitize=address -fsanitize=leak -fsanitize=undefined")
+set(SANITIZER_FLAGS "")  # Valgrind буянит
 
 set(CMAKE_CXX_FLAGS "-O0 -g -Wall -Werror ${CODE_COVERAGE_FLAGS} ${SANITIZER_FLAGS}")
 set(CMAKE_C_FLAGS "-O0 -g -Wall -Werror ${CODE_COVERAGE_FLAGS} ${SANITIZER_FLAGS}")

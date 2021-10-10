@@ -22,8 +22,11 @@ jobs:
   include:
     - stage: running tests
       script:
+        - ./build/rta_test 
+
+    - stage: valgrind
+      script:
         - valgrind --error-exitcode=1 ./build/rta_test 
-        - ./build/rta_test
 
     - stage: checking code coverage
       script:
@@ -37,8 +40,6 @@ jobs:
 
     - stage: cppcheck
       script: cppcheck --error-exitcode=1 *.c
-
-    -
 
 # Не показывает coverage_results и почему-то выкладывает весь проект
 #
