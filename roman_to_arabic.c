@@ -32,6 +32,10 @@ int translate_roman_to_arabic(const char roman[], int *arabic) {
     int prev = 0;
     size_t len = strlen(roman);
 
+    if (len == 0) {
+        return -1;
+    }
+
     for (size_t i = len; i > 0; --i) {
         int curr = translate_roman_numeral(roman[i - 1]);
 
