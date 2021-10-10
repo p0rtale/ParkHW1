@@ -4,7 +4,10 @@ addons:
   apt:
     packages:
       - cmake
-      - gcovr
+
+before_install:
+  - sudo apt-get -y install gcovr
+
 
 before_script:
   - mkdir build
@@ -20,7 +23,6 @@ jobs:
     - stage: checking code coverage
       script:
         - ./rta_test
-        - ls ..
         - gcovr -r .. -e ../gtest/
       #  - mkdir coverage_results 
       #  - gcovr -r .. -e ../gtest/ --html --html-details -o coverage_results/coverage.html
