@@ -4,18 +4,26 @@ extern "C" {
     #include "roman_to_arabic.h"
 }
 
-TEST(RTA_TEST, SimpleTest) {
-    const char *s = "VI";
+TEST(NORMAL_WORK, OneRomanDigit) {
     int res = 0;
-    translate_roman_to_arabic(s, &res);
-    EXPECT_EQ(res, 6);
+    EXPECT_EQ(translate_roman_to_arabic("L", &res), 0);
+    EXPECT_EQ(res, 50);
 }
 
-TEST(RTA_TEST, AnotherSimpleTest) {
-    const char *s = "MDXCVIII";
+TEST(NORMAL_WORK, FewRomanDigits) {
     int res = 0;
-    translate_roman_to_arabic(s, &res);
+    EXPECT_EQ(translate_roman_to_arabic("MDXCVIII", &res), 0);
     EXPECT_EQ(res, 1598);
+}
+
+TEST(ERROR_WORK, NotRomanNumber) {
+    int res = 0;
+    EXPECT_EQ(translate_roman_to_arabic("LVI3I", &res), -1);
+}
+
+TEST(ERROR_WORK, NullPointer) {
+    int res = 0;
+    EXPECT_EQ(translate_roman_to_arabic(NULL, &res), -1);
 }
 
 int main(int argc, char **argv) {
