@@ -6,8 +6,8 @@ addons:
       - cmake
 
 before_install:
-  - sudo apt-get -y install gcovr
-
+  - pip install gcovr
+  - pip install cpplint
 
 before_script:
   - mkdir build
@@ -27,6 +27,10 @@ jobs:
       #  - mkdir coverage_results 
       #  - gcovr -r .. -e ../gtest/ --html --html-details -o coverage_results/coverage.html
 
+    - stage: cpplint
+      script:
+        - cpplint --filter=-legal/copyright --filter=-build/include_subdir --filter=-readability/casting ../*.c
+        
 # Не показывает coverage_results и почему-то выкладывает весь проект
 #
 # deploy:
