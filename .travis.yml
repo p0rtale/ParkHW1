@@ -4,6 +4,8 @@ addons:
   apt:
     packages:
       - cmake
+      - cppcheck
+      - valgrind
 
 before_install:
   - pip install gcovr
@@ -14,22 +16,29 @@ before_script:
   - cd build
   - cmake ..
   - make
+  - cd ..
 
 jobs:
   include:
     - stage: running tests
-      script: ./rta_test
+      script:
+        - valgrind --error-exitcode=1 ./build/rta_test 
+        - ./build/rta_test
 
     - stage: checking code coverage
       script:
-        - ./rta_test
-        - gcovr -r .. -e ../gtest/
+        - ./build/rta_test
+        - gcovr -r . -e gtest/
       #  - mkdir coverage_results 
       #  - gcovr -r .. -e ../gtest/ --html --html-details -o coverage_results/coverage.html
 
     - stage: cpplint
-      script:
-        - cpplint ../*.c
+      script: cpplint *.c
+
+    - stage: cppcheck
+      script: cppcheck --error-exitcode=1 *.c
+
+    -
 
 # Не показывает coverage_results и почему-то выкладывает весь проект
 #

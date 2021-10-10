@@ -16,6 +16,7 @@ char *read_string() {
     fgets(input_str, MAX_SIZE, stdin);
     if (ferror(stdin)) {
         printf("Error: input error\n");
+        free(input_str);
         return NULL;
     }
 

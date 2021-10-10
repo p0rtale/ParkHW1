@@ -8,8 +8,11 @@ set(CMAKE_C_STANDART_REQURED ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_CXX_FLAGS "-fprofile-arcs -ftest-coverage -fPIC")
-set(CMAKE_C_FLAGS "-fprofile-arcs -ftest-coverage -fPIC")
+set(CODE_COVERAGE_FLAGS "-fprofile-arcs -ftest-coverage -fPIC")
+set(SANITIZER_FLAGS "-fsanitize=address -fsanitize=leak -fsanitize=undefined")
+
+set(CMAKE_CXX_FLAGS "-O0 -g -Wall -Werror ${CODE_COVERAGE_FLAGS} ${SANITIZER_FLAGS}")
+set(CMAKE_C_FLAGS "-O0 -g -Wall -Werror ${CODE_COVERAGE_FLAGS} ${SANITIZER_FLAGS}")
 
 set(LIB_SOURCE_FILES roman_to_arabic.c)
 add_library(roman_to_arabic STATIC ${LIB_SOURCE_FILES})
