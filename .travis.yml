@@ -22,12 +22,11 @@ jobs:
         - mkdir coverage_results 
         - gcovr -r .. -e ../gtest/ --html --html-details -o coverage_results/coverage.html
 
-    - stage: artifacts
-      deploy:
-        provider: releases
-        api_key: '$GITHUB_API_KEY'
-        file_glob: true
-        file: build/coverage_results/*
-        skip_cleanup: true
-        on:
-          tags: true
+deploy:
+  provider: releases
+  api_key: '$GITHUB_API_KEY'
+  file_glob: true
+  file: build/coverage_results/*
+  skip_cleanup: true
+  on:
+    tags: true
