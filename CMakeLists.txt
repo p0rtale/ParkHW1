@@ -8,6 +8,9 @@ set(CMAKE_C_STANDART_REQURED ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_CXX_FLAGS "-fprofile-arcs -ftest-coverage -fPIC")
+set(CMAKE_C_FLAGS "-fprofile-arcs -ftest-coverage -fPIC")
+
 set(LIB_SOURCE_FILES roman_to_arabic.c)
 add_library(roman_to_arabic STATIC ${LIB_SOURCE_FILES})
 

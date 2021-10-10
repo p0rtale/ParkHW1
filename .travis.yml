@@ -3,7 +3,8 @@ language: c
 addons:
   apt:
     packages:
-    - cmake
+      - cmake
+      - gcovr
 
 before_script:
   - mkdir build
@@ -15,3 +16,8 @@ jobs:
   include:
     - stage: test
       script: ./rta_test
+
+    - stage: code coverage
+      script:
+        - mkdir coverage_results 
+        - gcovr -r .. -e ../gtest/ --html --html-details -o coverage_results/coverage.html
