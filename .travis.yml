@@ -26,7 +26,7 @@ jobs:
 
     - stage: valgrind
       script:
-        - valgrind --error-exitcode=1 --leak-check=full ./build/rta_test 
+        - valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all ./build/rta_test 
 
     - stage: checking code coverage
       script:
