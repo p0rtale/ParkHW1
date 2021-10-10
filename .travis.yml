@@ -28,4 +28,4 @@ deploy:
   file: 'build/coverage_results/*'
   skip_cleanup: true
   on:
-    tags
+    branch: task
