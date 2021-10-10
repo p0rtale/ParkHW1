@@ -14,11 +14,13 @@ before_script:
 
 jobs:
   include:
-    - stage: test
+    - stage: running tests
       script: ./rta_test
 
-    - stage: code coverage
-      script: gcovr -r .. -e ../gtest/
+    - stage: checking code coverage
+      script:
+        - ./rta_test
+        - gcovr -r .. -e ../gtest/
       #  - mkdir coverage_results 
       #  - gcovr -r .. -e ../gtest/ --html --html-details -o coverage_results/coverage.html
 

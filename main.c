@@ -21,7 +21,7 @@ char *read_string() {
 
     size_t len = strlen(input_str);
     if (len > MAX_ROMAN_NUMBER_LENGTH) {
-        printf("Warning: maximum number length exceeded\n");   
+        printf("Warning: maximum number length exceeded\n");
     }
     if (input_str[len - 1] == '\n') {
         input_str[len - 1] = '\0';
