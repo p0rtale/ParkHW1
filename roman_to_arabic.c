@@ -1,6 +1,7 @@
-#include "roman_to_arabic.h"
 #include <stddef.h>
 #include <string.h>
+
+#include "roman_to_arabic.h"
 
 static int translate_roman_numeral(const char numeral) {
     switch (numeral) {
