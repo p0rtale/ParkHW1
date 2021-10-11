@@ -1,7 +1,7 @@
 #include "roman_to_arabic.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define MAX_SIZE 20
 #define MAX_ROMAN_NUMBER_LENGTH 15
