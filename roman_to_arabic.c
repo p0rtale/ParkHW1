@@ -20,13 +20,13 @@ static int translate_roman_numeral(const char numeral) {
         case 'M':
             return 1000;
         default:
-            return -1;
+            return TRANSLATE_FAILURE;
     }
 }
 
 int translate_roman_to_arabic(const char roman[], int *arabic) {
     if (!roman) {
-        return -1;
+        return TRANSLATE_FAILURE;
     }
 
     *arabic = 0;
@@ -34,14 +34,14 @@ int translate_roman_to_arabic(const char roman[], int *arabic) {
     size_t len = strlen(roman);
 
     if (len == 0) {
-        return -1;
+        return TRANSLATE_FAILURE;
     }
 
     for (size_t i = len; i > 0; --i) {
         int curr = translate_roman_numeral(roman[i - 1]);
 
-        if (curr == -1) {
-            return -1;
+        if (curr == TRANSLATE_FAILURE) {
+            return TRANSLATE_FAILURE;
         }
 
         if (curr < prev) {
@@ -53,5 +53,5 @@ int translate_roman_to_arabic(const char roman[], int *arabic) {
         prev = curr;
     }
 
-    return 0;
+    return TRANSLATE_SUCCESS;
 }

@@ -4,41 +4,44 @@
 
 #include "roman_to_arabic.h"
 
+#define READ_SUCCESS 0
+#define READ_FAILURE 1
+
 #define MAX_SIZE 20
 #define MAX_ROMAN_NUMBER_LENGTH 15
 
-char *read_string() {
-    char *input_str = (char *)malloc(sizeof(char)*MAX_SIZE);
-    if (!input_str) {
-        fprintf(stderr, "Error: memory not allocated\n");
-        return NULL;
-    }
-
-    fgets(input_str, MAX_SIZE, stdin);
+int read_string(char *input_string) {
+    fgets(input_string, MAX_SIZE, stdin);
     if (ferror(stdin)) {
         fprintf(stderr, "Error: input error\n");
-        free(input_str);
-        return NULL;
+        return READ_FAILURE;
     }
 
-    size_t len = strlen(input_str);
+    size_t len = strlen(input_string);
     if (len > MAX_ROMAN_NUMBER_LENGTH) {
         fprintf(stderr, "Warning: maximum number length exceeded\n");
     }
-    if (input_str[len - 1] == '\n') {
-        input_str[len - 1] = '\0';
+    if (input_string[len - 1] == '\n') {
+        input_string[len - 1] = '\0';
     }
 
-    return input_str;
+    return READ_SUCCESS;
 }
 
 int main() {
-    char *input_string = read_string();
+    char *input_string = (char *)malloc(sizeof(char)*MAX_SIZE);
     if (!input_string) {
-        return -1;
+        fprintf(stderr, "Error: memory not allocated\n");
+        return EXIT_FAILURE;
     }
 
-    int res = -1;
+    read_string(input_string);
+    if (!input_string) {
+        free(input_string);
+        return EXIT_FAILURE;
+    }
+
+    int res = 0;
     if (translate_roman_to_arabic(input_string, &res)) {
         fprintf(stderr, "Error: this is not a Roman number\n");
     } else {
@@ -47,5 +50,5 @@ int main() {
 
     free(input_string);
 
-    return 0;
+    return EXIT_SUCCESS;
 }
