@@ -8,8 +8,8 @@ addons:
       - valgrind
 
 before_install:
-  - pip install gcovr
-  - pip install cpplint
+  - pip3 install gcovr
+  - pip3 install cpplint
 
 before_script:
   - mkdir build
@@ -39,4 +39,4 @@ jobs:
       script: cpplint *.c
 
     - stage: cppcheck
-      script: cppcheck --error-exitcode=1 *.c
+      script: python3 -m cppcheck --error-exitcode=1 *.c
