@@ -32,6 +32,7 @@ jobs:
       script:
         - ./build/rta_test
         - gcovr -r . -e gtest/
+        - bash <(curl -s https://codecov.io/bash)
       #  - mkdir coverage_results 
       #  - gcovr -r .. -e ../gtest/ --html --html-details -o coverage_results/coverage.html
 
