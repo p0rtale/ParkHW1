@@ -1,7 +1,5 @@
 language: c
 
-python: "3.6"
-
 addons:
   apt:
     packages:
@@ -34,8 +32,8 @@ jobs:
       script:
         - ./build/rta_test
         - mkdir coverage_results 
-        - python -m gcovr -r . -e gtest/ --txt -o coverage_results/coverage.txt
-        - ./codecov -f coverage_results/coverage.txt
+        - python -m gcovr -r . -e gtest/ --xml-pretty -o coverage_results/coverage.xml
+        - ./codecov -f coverage_results/coverage.xml
 
     - stage: cpplint
       script: python -m cpplint *.c
