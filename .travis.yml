@@ -21,7 +21,7 @@ before_script:
 jobs:
   include:
     - stage: running tests
-      script: /build/rta_test 
+      script: ./build/rta_test 
 
     - stage: valgrind
       script: valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all ./build/rta_test 
