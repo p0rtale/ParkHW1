@@ -31,24 +31,12 @@ jobs:
     - stage: checking code coverage
       script:
         - ./build/rta_test
-        - gcovr -r . -e gtest/
-        - bash <(curl -s https://codecov.io/bash)
-      #  - mkdir coverage_results 
-      #  - gcovr -r .. -e ../gtest/ --html --html-details -o coverage_results/coverage.html
+        - mkdir coverage_results 
+        - gcovr -r .. -e gtest/ --html --html-details -o coverage_results/coverage.html
+        - ./codecov -s coverage_results/
 
     - stage: cpplint
       script: cpplint *.c
 
     - stage: cppcheck
       script: cppcheck --error-exitcode=1 *.c
-
-# Не показывает coverage_results и почему-то выкладывает весь проект
-#
-# deploy:
-#   provider: releases
-#   api_key: '$GITHUB_API_KEY'
-#   file_glob: true
-#   file: build/coverage_results/*
-#   skip_cleanup: true
-#   on:
-#     tags: true
