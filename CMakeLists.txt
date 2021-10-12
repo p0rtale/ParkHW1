@@ -9,7 +9,6 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CODE_COVERAGE_FLAGS "-fprofile-arcs -ftest-coverage -fPIC")
-set(SANITIZER_FLAGS "")  # Valgrind буянит
 
 set(CMAKE_CXX_FLAGS "-O0 -g -Wall -Werror ${CODE_COVERAGE_FLAGS} ${SANITIZER_FLAGS}")
 set(CMAKE_C_FLAGS "-O0 -g -Wall -Werror ${CODE_COVERAGE_FLAGS} ${SANITIZER_FLAGS}")
@@ -26,3 +25,19 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 add_executable(rta_test rta_test.cpp)
 target_link_libraries(rta_test gtest roman_to_arabic -lpthread -lm)
+
+if(ADRESS_SANITAZER)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
+endif()
+
+if(LEAK_SANITIZER)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=leak")
+endif()
+
+if(UNDEFINED_SANITIZER)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=undefined")
+endif()
+
+if(THREAD_SANITIZER)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread")
+endif()

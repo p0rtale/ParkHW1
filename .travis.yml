@@ -21,12 +21,38 @@ before_script:
 jobs:
   include:
     - stage: running tests
-      script:
-        - ./build/rta_test 
+      script: /build/rta_test 
 
     - stage: valgrind
-      script:
-        - valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all ./build/rta_test 
+      script: valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all ./build/rta_test 
+
+    - stage: address sanitizer
+      script: 
+        - cd build
+        - cmake -D ADRESS_SANITAZER=ON ..
+        - make
+        - ./rta_test
+
+    - stage: leak sanitizer
+      script: 
+        - cd build
+        - cmake -D LEAK_SANITIZER=ON ..
+        - make
+        - ./rta_test
+
+    - stage: undefined sanitizer
+      script: 
+        - cd build
+        - cmake -D UNDEFINED_SANITIZER=ON ..
+        - make
+        - ./rta_test
+
+    - stage: thread sanitizer
+      script: 
+        - cd build
+        - cmake -D THREAD_SANITIZER=ON ..
+        - make
+        - ./rta_test
 
     - stage: checking code coverage
       script:
