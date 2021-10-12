@@ -8,11 +8,10 @@ addons:
       - cmake
       - cppcheck
       - valgrind
-      - python3-pip
 
 before_install:
-  - pip3 install gcovr
-  - pip3 install cpplint
+  - pip install gcovr
+  - pip install cpplint
 
 before_script:
   - mkdir build
@@ -35,11 +34,11 @@ jobs:
       script:
         - ./build/rta_test
         - mkdir coverage_results 
-        - python3 -m gcovr -r . -e gtest/ --txt -o coverage_results/coverage.txt
+        - python -m gcovr -r . -e gtest/ --txt -o coverage_results/coverage.txt
         - ./codecov -f coverage_results/coverage.txt
 
     - stage: cpplint
-      script: cpplint *.c
+      script: python -m cpplint *.c
 
     - stage: cppcheck
-      script: python3 -m cppcheck --error-exitcode=1 *.c
+      script: cppcheck --error-exitcode=1 *.c
