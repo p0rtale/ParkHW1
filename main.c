@@ -35,8 +35,7 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    read_string(input_string);
-    if (!input_string) {
+    if (read_string(input_string)) {
         free(input_string);
         return EXIT_FAILURE;
     }
