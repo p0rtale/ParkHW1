@@ -32,7 +32,7 @@ jobs:
       script:
         - ./build/rta_test
         - mkdir coverage_results 
-        - gcovr -r . -e gtest/ --txt -o coverage_results/coverage.txt
+        - python3 -m gcovr -r . -e gtest/ --txt -o coverage_results/coverage.txt
         - ./codecov -f coverage_results/coverage.txt
 
     - stage: cpplint
