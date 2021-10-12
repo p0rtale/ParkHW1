@@ -31,9 +31,8 @@ jobs:
     - stage: checking code coverage
       script:
         - ./build/rta_test
-        - mkdir coverage_results 
-        - gcovr -r .. -e gtest/ --html --html-details -o coverage_results/coverage.html
-        - ./codecov -s coverage_results/
+        - gcovr -r . -e gtest/
+        - ./codecov
 
     - stage: cpplint
       script: cpplint *.c
