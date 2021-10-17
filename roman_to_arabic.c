@@ -30,9 +30,8 @@ int translate_roman_to_arabic(const char roman[], int *arabic) {
         return TRANSLATE_FAILURE;
     }
 
-    int *p = malloc(1000);
-    free(p);
-    free(p);
+    int *p = malloc(sizeof(int));
+    *p = 1;
 
     *arabic = 0;
     int prev = 0;
