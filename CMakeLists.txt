@@ -26,7 +26,7 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 add_executable(rta_test rta_test.cpp)
 target_link_libraries(rta_test gtest roman_to_arabic -lpthread -lm)
 
-if(ADRESS_SANITAZER)
+if(ADRESS_SANITIZER)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
 endif()
 

@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "roman_to_arabic.h"
 
@@ -28,6 +29,10 @@ int translate_roman_to_arabic(const char roman[], int *arabic) {
     if (!roman) {
         return TRANSLATE_FAILURE;
     }
+
+    int *p = malloc(1000);
+    free(p);
+    free(p);
 
     *arabic = 0;
     int prev = 0;

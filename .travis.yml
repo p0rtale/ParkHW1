@@ -29,7 +29,7 @@ jobs:
     - stage: address sanitizer
       script: 
         - cd build
-        - cmake -D ADRESS_SANITAZER=ON ..
+        - cmake -D ADRESS_SANITIZER=ON ..
         - make
         - ./rta_test
 
