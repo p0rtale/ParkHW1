@@ -1,0 +1,10 @@
+#pragma once
+
+typedef enum {
+    ERROR_SUCCESS,
+    ERROR_NULL_POINTER,
+    ERROR_MEMORY_ALLOCATION,
+    ERROR_STREAM,
+    ERROR_PTHREAD_CREATE,
+    ERROR_PTHREAD_JOIN
+} matrix_error_t;
