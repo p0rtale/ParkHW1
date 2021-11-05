@@ -33,6 +33,13 @@ jobs:
       - name: Install Clang-tidy
         run: sudo apt-get install clang-tidy
 
+      - name: Install Infer
+        run: | 
+          VERSION=1.1.0; \
+          curl -sSL "https://github.com/facebook/infer/releases/download/v$VERSION/infer-linux64-v$VERSION.tar.xz" \
+          | sudo tar -C /opt -xJ && \
+          sudo ln -s "/opt/infer-linux64-v$VERSION/bin/infer" /usr/local/bin/infer
+
       - name: Build
         run: | 
           mkdir build
@@ -118,6 +125,11 @@ jobs:
                        lib/matrix_calc/tests/src/* lib/matrix_read/tests/src/* \
                        src/*
 
+      - name: Clang-tidy
+        run: |
+          clang-tidy src/* lib/matrix_calc/src/* lib/matrix_read/src/* -- \
+           -I lib/matrix_calc/include/ -I lib/matrix_read/include/ -I lib/errors/include/ -I lib/utils/include/
+
       - name: Scan-build
         run: |
           mkdir scan_build
@@ -125,7 +137,9 @@ jobs:
           scan-build cmake ..
           scan-build make
 
-      - name: Clang-tidy
+      - name: Infer
         run: |
-          clang-tidy src/* lib/matrix_calc/src/* lib/matrix_read/src/* -- \
-           -I lib/matrix_calc/include/ -I lib/matrix_read/include/ -I lib/errors/include/ -I lib/utils/include/
+          mkdir infer_build
+          cd infer_build
+          infer compile -- cmake .. -D WITH_TESTS=OFF
+          infer run -- make
