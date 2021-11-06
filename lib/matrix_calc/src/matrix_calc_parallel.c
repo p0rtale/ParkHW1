@@ -129,6 +129,8 @@ matrix_error_t calc_sums(float *sums, const float *matrix, size_t n) {
 
         int errflag = pthread_create(&threads[i], NULL, thread_routine, &thread_data[i]);
         if (errflag) {
+            free(threads);
+            free(thread_data);
             return ERROR_PTHREAD_CREATE;
         }
     }
