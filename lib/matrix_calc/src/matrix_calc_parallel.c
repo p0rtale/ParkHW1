@@ -84,7 +84,7 @@ static void *thread_routine(void *thread_data) {
 
 size_t get_sums_count(size_t n) { return n * 2 - 1; }
 
-matrix_error_t calc_sums(float sums[], const float matrix[], size_t n) {
+matrix_error_t calc_sums(float *sums, const float *matrix, size_t n) {
     if (!sums || !matrix) {
         return ERROR_NULL_POINTER;
     }

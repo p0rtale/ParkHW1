@@ -134,7 +134,7 @@ jobs:
         run: |
           mkdir scan_build
           cd scan_build
-          scan-build cmake ..
+          scan-build cmake .. -D WITH_TESTS=OFF
           scan-build make
 
       - name: Infer

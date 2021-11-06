@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-matrix_error_t read_matrix(FILE *fp, float matrix[], size_t n) {
+matrix_error_t read_matrix(FILE *fp, float *matrix, size_t n) {
     if (!fp || !matrix) {
         return ERROR_NULL_POINTER;
     }

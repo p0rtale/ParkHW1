@@ -6,7 +6,7 @@ static float float_rand(float min, float max)
     return min + scale * (max - min);
 }
 
-matrix_error_t generate_matrix(float matrix[], size_t n) {
+matrix_error_t generate_matrix(float *matrix, size_t n) {
     if (!matrix) {
         return ERROR_NULL_POINTER;
     }
