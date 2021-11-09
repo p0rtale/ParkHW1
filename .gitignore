@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+coverage_report/
+build/
+scan_build/
+infer_build/
+lib/matrix_calc/tests/data*
