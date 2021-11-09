@@ -94,6 +94,9 @@ matrix_error_t calc_sums(float *sums, const float *matrix, size_t n) {
         return ERROR_SYSCONF;
     }
     size_t thread_num = value;
+    if (thread_num > n * n) {
+        thread_num = n * n;
+    }
 
     size_t sums_num = get_sums_count(n);
     size_t diag_num = sums_num;
