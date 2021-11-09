@@ -89,12 +89,17 @@ matrix_error_t calc_sums(float *sums, const float *matrix, size_t n) {
         return ERROR_NULL_POINTER;
     }
 
+    long value = sysconf(_SC_NPROCESSORS_ONLN);
+    if (value == -1) {
+        return ERROR_SYSCONF;
+    }
+    size_t thread_num = value;
+
     size_t sums_num = get_sums_count(n);
     size_t diag_num = sums_num;
 
     memset(sums, 0, sums_num * sizeof(float));
 
-    size_t thread_num = sysconf(_SC_NPROCESSORS_ONLN);
     size_t required_num = (n * n) / thread_num;
 
     pthread_t *threads = (pthread_t *)malloc(thread_num * sizeof(pthread_t));
